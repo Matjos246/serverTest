@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <title>ejs_page</title>
+</head>
+<body>
+    <h3 class="bg-primary text-white p-3">I am the templating page for Node app</h3>
+    <!-- To display that username and pick it up as a variable will have to use that interpolation and by just typing < it will auto complete, with the help of EJS LANGUAGE SUPPORT extension -->
+     <!-- EJS TAG OUTPUT VALUE -->
+    <h5 class="text-danger">My name is <%=username%></h5>
+
+    <!-- EJS conditional Statement   -->
+        <% if (gender=="male") { %>
+             <h1>I am a MAN</h1>
+        <% } else{ %>
+            <h1>I am the other gender that gave apple to Adam</h1>
+     <% } %>
+    
+</body>
+</html>
+

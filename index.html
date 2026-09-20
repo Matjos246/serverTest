@@ -6,20 +6,43 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="ApiTest"></div>
 
     <script>
         var fruits = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape", "honeydew", "kiwi", "lemon", "mango", "nectarine", "orange", "pear", "plum", "quince", "raspberry", "strawberry", "tangerine", "watermelon", "zucchini"];
-        // var fruitsLength = fruits.length;
-        // console.log(fruitsLength);
+        var fruitsLength = fruits.length;
+        console.log(fruitsLength);
         console.log(fruits.length);
         let newFruits= [...fruits,'MANGO']
         console.log(newFruits);
         
         
-        //TEsting MUsicApi
+        //TEsting and fetching for MUsicApi
         let url= "https://res.cloudinary.com/dakiyibak/video/upload/v1693489807/05-NF-HAPPY-_HiphopKit.com_yx438c.mp3"
+
         fetch(url)
+    .then((res) => res.blob())
+
+//     .blob() means Binary Large Object.
+// It is used when the data you receive from a server is a file or raw binary data instead of JSON or normal text.  and using .then to get the Json
+//
+    .then((response) => {
+        console.log(response);
+    });
+        var Url="https://robo-music-api.onrender.com/music/my-api"
+        fetch(Url)
         .then((res) => res.json())
+        .then((jsonresponse)=>{
+            console.log(jsonresponse)
+            ApiTest.innerHTML= `<h1>${jsonresponse[0].artistName}</h1>
+            <h1>${jsonresponse[0].albumName}</h1>
+        <img src="${jsonresponse[0].songImage}" width="200" height="200"/>
+        <audio controls
+        <source src="${jsonresponse[0].songUrl}" type="audio/mpeg">`
+        
+            console.log(jsonresponse[0].artistName)
+            console.log(jsonresponse[0].songImage)
+        })
     </script>
 </body>
 </html>
