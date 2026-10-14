@@ -5,8 +5,7 @@ const mongoose=require ('mongoose')
 const App = express();
 App.set("view engine","ejs")
 let PORT= 5000;
-
-//this there is a package called body parser use to do is that instead of displaying all what is in the req, when is being make use of , it will only display what is in .body and in older express ejs version it will have to be install unlike recent version which is now inbuilt and to initial it will say what in line 8 & 9
+//this there is a package called body parser use to do is that instead of displaying all what is in the req, when is being make use of , it will only display what is in .body and in older express ejs version it will have to be install unlike recent version which is now inbuilt and to initial it.
     App.use(express.urlencoded
         ({extended:true}))
         // Setup connection to the database and there is a inbuilt to mongoose which is mongoose.connect() and it takes two parameter, the first one is the url of the database and the second one is an object with some properties like useNewUrlParser:true, useUnifiedTopology:true
@@ -50,6 +49,9 @@ let musicApi = [
 //http://localhost:5000 furthermore if open normal javascript or react and use fetch/axios, and type the address will definitely show what is the  RES. , like sending back a JSON 
 let allProducts= []
 let message = " "
+
+
+// Creating of Express Routes
 App.get('/' , (req,res)=>{
     res.send('My World of Possibilities')
 })
@@ -64,12 +66,18 @@ App.get("/allStudents" , (req, res)=>{
 App.get("/musicApi" , (req, res)=>{
     res.send(musicApi)
 })
-App.get("/test",(req, res)=>{
+App.get("/SignUp",(req, res)=>{
       res.sendFile(__dirname+"/SignUp.html") 
      console.log(__dirname+"/SignUp.html");
 })
+
+App.get("/SignIn",(req, res)=>{
+      res.sendFile(__dirname+"/SignIn.html") 
+     console.log(__dirname+"/SignIn.html");
+})
+
 App.get("/ejs",(req,res)=>{
-    res.render("engine")
+    // res.render("engine")
      res.render("engine",{username:"Akinola", gender:"male"})
 })
 App.get("/createproduct", (req, res)=>{
@@ -77,6 +85,7 @@ App.get("/createproduct", (req, res)=>{
       message = " " 
 })
 App.get("/displayProduct", (req, res)=>{
+    // So to fetch all the products from the database by calling on it model--- ProductModel.find() if not will be displayproduct page will be fetching it from the empty Array, More queries like these are on mongodb documentations and mongoose documentations, and the .then block is to handle the asynchronous nature of the ProductModel.find() and it takes in a parameter which is the result of the query which is allProducts and then we can console.log it to see what is in it and then we can render it to the displayProductpage by passing it as an object with key allProducts and value allProducts
         ProductModel.find()
         .then((allProducts)=>{
             console.log(allProducts)
@@ -84,6 +93,21 @@ App.get("/displayProduct", (req, res)=>{
     res.render("displayProductpage",{allProducts})
         })
 })
+
+App.get('/fakeapi', (req, res) => {
+    res.redirect('https://fakestoreapi.com/products');
+});
+
+App.get("/joasyncsolutions", (req, res)=>{
+    res.redirect('https://joasync-portfolio.vercel.app/')
+})
+
+// res.status() is an Express response METHOD that sets the HTTP status code your server sends back to the client.
+App.get('/paid', (req, res) => {
+    res.status(200).send('Payment successful');
+});
+
+
 App.post("/submitProduct", (req, res)=>{
     // res.render("createproductpage") 
     console.log("E don submit oooo");
@@ -107,6 +131,8 @@ App.post("/submitProduct", (req, res)=>{
     // console.log(req);
     // console.log(res);
 })
+
+
 //                                   
 //What is being creating here is known as API ENDPOINT Now API ENDPOINT FOR LOCALHOST 5000 so there is now API endpoint in express for localhost port 5000 "/" and localhost port 5000 '/Info' and also not only string can be pass/send array of obj can also be pass, moreover just as in react app we have to start a server using npm run dev, as well in node app, need to create that also to start a sserver in an express applications which start with using app.listen() which we can use node for the running of the js file , node index.js
 App.listen(PORT,(err)=>{
