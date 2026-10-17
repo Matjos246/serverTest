@@ -92,6 +92,7 @@ App.get("/displayProduct", (req, res)=>{
                // res.render("displayProductPage")
     res.render("displayProductpage",{allProducts})
         })
+
 })
 
 App.get('/fakeapi', (req, res) => {
