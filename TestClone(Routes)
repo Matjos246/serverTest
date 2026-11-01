@@ -52,39 +52,39 @@ let message = " "
 
 
 // Creating of Express Routes
-App.get('/' , (req,res)=>{
+router.get('/' , (req,res)=>{
     res.send('My World of Possibilities')
 })
 http://localhost:5000/Info
-App.get('/Info', (req,res)=>{
+router.get('/Info', (req,res)=>{
     res.send('Fullstack web development')
 })
 http://localhost:5000/allStudents
-App.get("/allStudents" , (req, res)=>{
+router.get("/allStudents" , (req, res)=>{
     res.send(allStudents)
 })
-App.get("/musicApi" , (req, res)=>{
+router.get("/musicApi" , (req, res)=>{
     res.send(musicApi)
 })
-App.get("/SignUp",(req, res)=>{
+router.get("/SignUp",(req, res)=>{
       res.sendFile(__dirname+"/SignUp.html") 
      console.log(__dirname+"/SignUp.html");
 })
 
-App.get("/SignIn",(req, res)=>{
+router.get("/SignIn",(req, res)=>{
       res.sendFile(__dirname+"/SignIn.html") 
      console.log(__dirname+"/SignIn.html");
 })
 
-App.get("/ejs",(req,res)=>{
+router.get("/ejs",(req,res)=>{
     // res.render("engine")
      res.render("engine",{username:"Akinola", gender:"male"})
 })
-App.get("/createproduct", (req, res)=>{
+router.get("/createproduct", (req, res)=>{
       res.render("createproductpage",{message}) 
       message = " " 
 })
-App.get("/displayProduct", (req, res)=>{
+router.get("/displayProduct", (req, res)=>{
     // So to fetch all the products from the database by calling on it model--- ProductModel.find() if not will be displayproduct page will be fetching it from the empty Array, More queries like these are on mongodb documentations and mongoose documentations, and the .then block is to handle the asynchronous nature of the ProductModel.find() and it takes in a parameter which is the result of the query which is allProducts and then we can console.log it to see what is in it and then we can render it to the displayProductpage by passing it as an object with key allProducts and value allProducts
         ProductModel.find()
         .then((allProducts)=>{
@@ -95,21 +95,21 @@ App.get("/displayProduct", (req, res)=>{
 
 })
 
-App.get('/fakeapi', (req, res) => {
+router.get('/fakeapi', (req, res) => {
     res.redirect('https://fakestoreapi.com/products');
 });
 
-App.get("/joasyncsolutions", (req, res)=>{
+router.get("/joasyncsolutions", (req, res)=>{
     res.redirect('https://joasync-portfolio.vercel.app/')
 })
 
 // res.status() is an Express response METHOD that sets the HTTP status code your server sends back to the client.
-App.get('/paid', (req, res) => {
-    res.status(200).send('Payment successful');
+router.get('/paid', (req, res) => {
+    res.status(200).send('Payment successful recieved');
 });
 
 
-App.post("/submitProduct", (req, res)=>{
+router.post("/submitProduct", (req, res)=>{
     // res.render("createproductpage") 
     console.log("E don submit oooo");
     // next line enable us to save to an array after saying allProducts has been assign to empty array [] 
@@ -132,7 +132,6 @@ App.post("/submitProduct", (req, res)=>{
     // console.log(req);
     // console.log(res);
 })
-
 
 //                                   
 //What is being creating here is known as API ENDPOINT Now API ENDPOINT FOR LOCALHOST 5000 so there is now API endpoint in express for localhost port 5000 "/" and localhost port 5000 '/Info' and also not only string can be pass/send array of obj can also be pass, moreover just as in react app we have to start a server using npm run dev, as well in node app, need to create that also to start a sserver in an express applications which start with using app.listen() which we can use node for the running of the js file , node index.js
