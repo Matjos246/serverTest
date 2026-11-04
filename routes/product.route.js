@@ -1,4 +1,4 @@
-// First import express and router bcus express is what handle our route by  then we create router out of it
+// First import express and router bcus express is what handle our route by  then we create router out of it  (const router =  express.Router()) so as to 
 // defining productmodel to be able to use it in the product.route.js file
 const ProductModel = require("../models/product.model")
 const express = require ("express");
