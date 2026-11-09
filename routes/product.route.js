@@ -99,3 +99,7 @@ router.post("/submitProduct", (req, res)=>{
 
    // To handle our routing will use  App.use() , then have to export it, using module.exports = router for    App.use("/product",) in the server page to have access to it
 module.exports = router
+
+
+
+// Controller is simply just logic and functions , if our code is being check here at the server is still quite long , reason being that is still pretty long containing more than route i.e route.get its also contain functions like 

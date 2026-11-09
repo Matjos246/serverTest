@@ -65,7 +65,14 @@ App.listen(PORT,(err)=>{
     }else{
         console.log("Ope ooo, Server nti start");
     }
-})
+})  
 // To start server
 // node test.js
 // nodemon test.js or simply use nodemon
+
+
+// Controller is simply just logic and functions , if our code is being check here at the server is still quite long , reason being that is still pretty long containing more than route i.e route.get its also contain functions like 
+
+
+// App.listen(PORT, callback)
+// App.get(Path,callback)
