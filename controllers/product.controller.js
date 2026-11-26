@@ -2,11 +2,9 @@
 //  Basically the goal of this page is to modularize all the functions to this pages .... eg router.get("/musicApi" , (req, res)=>{
 //     res.send(musicApi)
 // })
+
+let message = " "
 const ProductModel = require("../models/product.model");
-
-
-
-
 const displayAllStudents=(req,res)=>{
      let allStudents = [{firstname: "Joshua", Lastname:"Akinola", course: 'Web development' },
     {firstname: "Akinola", Lastname:"Ayobami", course: 'Data Analysis'},
@@ -14,7 +12,6 @@ const displayAllStudents=(req,res)=>{
 ]
            res.send(allStudents)
 }
-
 const displayWorld=(req,res)=>{
      res.send('My World of Possibilities');
 }
@@ -24,8 +21,9 @@ const displayEjs=(req,res)=>{
 }
 
 const displayCreateProductpage=(req,res)=>{
-        message=" " 
-      res.render("createproductpage",{message})   
+     //  message=" "  
+      res.render("createproductpage",{message})  
+     
 }
 const displayMusicapi=(req,res)=>{
      let musicApi = [ 
@@ -39,9 +37,15 @@ const displayMusicapi=(req,res)=>{
        res.send(musicApi)
 }
 
-const displayPaid=()=>{
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+const displayPaid=(req,res)=>{
+      res.status(200).send('Payment successful');
+      alert(active)                                                           
 }
+
+const displayInfo=(req,res)=>{
+    res.send('Fullstack web development')
+}
+
 const displayProductpage=(req,res)=>{
              ProductModel.find()
         .then((allProducts)=>{
@@ -49,6 +53,26 @@ const displayProductpage=(req,res)=>{
                // res.render("displayProductPage")
     res.render("displayProductpage",{allProducts})
         })
+}
+
+const path = require("path")
+
+const displaySignin=(req,res)=>{
+          res.sendFile(path.join(__dirname, "../SignIn.html")) 
+             console.log(path.join(__dirname, "../SignIn.html"));
+}
+
+const displaySignUp=(req,res)=>{
+          res.sendFile(path.join(__dirname, "../SignUp.html")) 
+             console.log(path.join(__dirname, "../SignUp.html"));
+}
+
+const displayFakeapi=(req,res)=>{
+      res.redirect('https://fakestoreapi.com/products');
+}
+
+const displayJoasyncsolutions=(req,res)=>{
+     res.redirect('https://joasync-portfolio.vercel.app/')
 }
 
 const summitProduct=(req,res)=>{
@@ -63,16 +87,16 @@ const summitProduct=(req,res)=>{
     .then(()=>{
         console.log("its has saved oooo")
           message = "Product added Successfully !" 
-          res.redirect("/createProduct")
+          res.redirect("/product/createProduct")
     })
     .catch((err)=>{
             console.log(err,"it did not save oooo")
               message = "Product could not added Successfully !" 
-              res.redirect("/createProduct")
+              res.redirect("/product/createProduct")
     })
     // req is what the user typed by consoling the res or req it will show plenty info about it, both the one needed (this equally works like event and target in REACT )and not so to just filter out what needed(what the user typed) from the bunch of info given app.use()
     // console.log(req);
     // console.log(res);
 }
 // So for that displayWorld to be seen will have to export it and also bcus we have quite a bunch of function to export will export it as an Object
-module.exports={displayWorld,displayEjs,displayCreateProductpage,displayProductpage, displayMusicapi,displayAllStudents, summitProduct}
+module.exports={displayWorld,displayEjs,displayCreateProductpage,displayProductpage, displayMusicapi,displayAllStudents, summitProduct,displayPaid, displayInfo,displaySignin,displaySignUp,displayFakeapi,displayJoasyncsolutions}
